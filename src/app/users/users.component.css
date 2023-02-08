@@ -1,0 +1,16 @@
+h2 {
+    color: blue;
+}
+
+th {
+    color: red;
+    background-color: burlywood;
+}
+
+th, td, table {
+    border: 1px solid grey;
+}
+
+th, td {
+    text-align: center;
+}
