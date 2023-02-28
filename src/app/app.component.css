@@ -1,0 +1,15 @@
+.main {
+    width: 98%;
+    margin: auto;
+    vertical-align: top;
+}
+
+.users {
+    float: left;
+    width: 55%;
+}
+
+.userDetail {
+    float: right;
+    width: 40%;
+}

@@ -9,7 +9,8 @@
         <th>Phone</th>
         <th>Province</th>
         <th>Age</th>
+        <th>Actions</th>
     </tr>
-    <tr app-user *ngFor="let user of users" [user-data]="user">    
+    <tr app-user *ngFor="let user of users" [user-data]="user" (onDeleteUser)="onDeleteUser($event)">    
     </tr>
 </table>
