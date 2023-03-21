@@ -1,6 +1,6 @@
 <h1>User Management System</h1>
 
-<button type="button" (click)="newUser()">New User</button>
+<button type="button" (click)="newUser()" routerLink="users/new">New User</button>
 <div class="main">
     <div class="users">
         <app-users (updateUser)="updateUser($event)"></app-users>
