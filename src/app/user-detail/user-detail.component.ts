@@ -1,6 +1,9 @@
+import { Observable } from 'rxjs';
+import { AppRoutingModule } from './../app-routing.module';
 import { User } from './../classes/user';
 import { UserService } from './../services/user.service';
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-detail',
@@ -20,21 +23,34 @@ export class UserDetailComponent implements OnInit {
     return this.__user;
   }
 
-  constructor(private userService: UserService) { 
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router)
+  {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(param => {
+      if (param['id']) {
+        const id = Number(param['id']); // '12'
+        this.userService.getUser(id)
+          .subscribe(user => this.user = user)
+      }
+    });
   }
 
   saveUser(): void {
+    let obs;
     if(this.user.id > 0)
     {
-      this.userService.updateUser(this.user)
+      obs = this.userService.updateUser(this.user)
     }
     else
     {
-      this.userService.createUser(this.user);
+      obs = this.userService.createUser(this.user);
     }
+    obs.subscribe(response => {
+      this.__user = response;
+      location.reload();
+    })
   }
 
   resetUser(form:any): void {
